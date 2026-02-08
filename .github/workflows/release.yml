@@ -38,11 +38,6 @@ jobs:
             use_cross: true
             binary_name: emacs-lsp-booster.exe
             archive_ext: zip
-          - target: aarch64-pc-windows-gnu
-            os: ubuntu-latest
-            use_cross: true
-            binary_name: emacs-lsp-booster.exe
-            archive_ext: zip
     steps:
       - uses: actions/checkout@v4
 
