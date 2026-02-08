@@ -81,9 +81,12 @@ jobs:
           zip ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip ${{ matrix.binary_name }}
           shasum -a 256 ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip > ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip.sha256sum
 
-      - name: Upload release artifact
-        uses: softprops/action-gh-release@v2
+      - uses: actions/upload-artifact@v6
         with:
-          files: ${{ matrix.binary_name }}-*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ matrix.binary_name }}-*
+      # - name: Upload release artifact
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     files: ${{ matrix.binary_name }}-*
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
