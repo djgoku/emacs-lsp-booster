@@ -63,12 +63,14 @@ jobs:
         run: |
           cd target/${{ matrix.target }}/release
           tar czf ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.tar.gz ${{ matrix.binary_name }}
+          shasum -a 256 ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.tar.gz > ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.tar.gz.sha256sum
 
       - name: Package (zip)
         if: matrix.archive_ext == 'zip'
         run: |
           cd target/${{ matrix.target }}/release
           zip ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip ${{ matrix.binary_name }}
+          shasum -a 256 ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip > ../../../${{ matrix.binary_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip.sha256sum
 
       - name: Upload release artifact
         uses: softprops/action-gh-release@v2
